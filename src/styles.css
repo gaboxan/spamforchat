@@ -2,3 +2,5 @@ body{
     background-image: url("https://www.xtrafondos.com/wallpapers/estrellas-en-el-universo-morado-4465.jpg");
    }
  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

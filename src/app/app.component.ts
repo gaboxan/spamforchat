@@ -1,14 +1,17 @@
 // app.component.ts
-import { Component, Injectable } from '@angular/core';
+import { Component, ElementRef, Injectable, ViewChild } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { loginGoogle } from 'src/services/loginGoogle.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {MatDialog} from '@angular/material/dialog'  
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+
 })
 export class AppComponent {
   title = 'sftc';
@@ -27,8 +30,16 @@ export class AppComponent {
   emailvMsg: string;
   passwordMsg: string;
 
+
+
   DesactivarMayus() {}
-  constructor(private clipboard: Clipboard, private logingoogle: loginGoogle, private route:Router) {}
+  constructor(private clipboard: Clipboard, private logingoogle: loginGoogle, private route:Router,public dialog:MatDialog) {}
+  openDialog(){
+    this.dialog.open(DialogBoxComponent,{
+      width:'250px',
+      data:"right Click"
+    })
+  }
   spamear() {
     this.mostrarCopiar = true;
     this.spam = '';
@@ -42,6 +53,7 @@ export class AppComponent {
       }
     }
   }
+  
   copiar() {
     const spamConSaltos = this.spam.replace(/<br>/g, '\n');
     this.clipboard.copy(spamConSaltos);
@@ -70,11 +82,13 @@ export class AppComponent {
       this.register(this.email,this.password)
     }
   }
+
   register(email: string, password: string) {
     this.logingoogle
       .registrarse(email, password)
       .then((res) => {
         alert("Usuario creado correctamente; ahora inicia sesión")
+        this.openDialog()
         this.email = ''
         this.password =''
         this.mostrarRegistro= false

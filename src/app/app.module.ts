@@ -7,6 +7,11 @@ import { loginGoogle } from 'src/services/loginGoogle.service';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import { environments } from 'src/environments/environment';
+import {MatDialogModule} from '@angular/material/dialog'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+
 // import { MensajeModalComponent } from './mensaje-modal/mensaje-modal.component';
 
 
@@ -17,7 +22,11 @@ import { environments } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    // MensajeModalComponent
+
+
+    DialogBoxComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -26,7 +35,9 @@ import { environments } from 'src/environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
    
 
   ],
