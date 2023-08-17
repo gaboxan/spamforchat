@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "spamforchatv2"
+  },
+  "targets": {
+    "spamforchatv2": {
+      "hosting": {
+        "spamforchat": [
+          "spamforchatv2"
+        ]
+      }
+    }
+  }
+}
