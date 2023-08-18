@@ -3,15 +3,14 @@ import { Component, ElementRef, Injectable, ViewChild } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { loginGoogle } from 'src/services/loginGoogle.service';
 import { Router } from '@angular/router';
-import {MatDialog} from '@angular/material/dialog'  
+import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
-
+import { SpamService } from 'src/services/spam.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-
 })
 export class AppComponent {
   title = 'sftc';
@@ -30,16 +29,22 @@ export class AppComponent {
   emailvMsg: string;
   passwordMsg: string;
 
-
-
   DesactivarMayus() {}
-  constructor(private clipboard: Clipboard, private logingoogle: loginGoogle, private route:Router,public dialog:MatDialog) {}
-  openDialog(){
-    this.dialog.open(DialogBoxComponent,{
-      width:'250px',
-      data:"right Click"
-    })
+
+  constructor(
+    private clipboard: Clipboard,
+    private logingoogle: loginGoogle,
+    private route: Router,
+    public dialog: MatDialog,
+    private spamService:SpamService
+  ) {}
+  openDialog() {
+    this.dialog.open(DialogBoxComponent, {
+      width: '250px',
+      data: 'right Click',
+    });
   }
+
   spamear() {
     this.mostrarCopiar = true;
     this.spam = '';
@@ -53,7 +58,7 @@ export class AppComponent {
       }
     }
   }
-  
+
   copiar() {
     const spamConSaltos = this.spam.replace(/<br>/g, '\n');
     this.clipboard.copy(spamConSaltos);
@@ -65,21 +70,20 @@ export class AppComponent {
       this.emailvMsg = 'Rellene el correo porfavor';
     } else {
       if (this.validEmail.test(this.email)) {
-        this.emailValid= false;
-        this.vPassword()
+        this.emailValid = false;
+        this.vPassword();
       } else {
         this.emailValid = true;
         this.emailvMsg = 'Proporciona un correo valido por favor';
       }
     }
   }
-  vPassword(){
-    if(this.password == '' || this.password.length < 6){
-      this.passValid= true
-      this.passwordMsg ='Proporcione una contraseña de más de 5 digitos '
-    }else{
-      
-      this.register(this.email,this.password)
+  vPassword() {
+    if (this.password == '' || this.password.length < 6) {
+      this.passValid = true;
+      this.passwordMsg = 'Proporcione una contraseña de más de 5 digitos ';
+    } else {
+      this.register(this.email, this.password);
     }
   }
 
@@ -87,11 +91,10 @@ export class AppComponent {
     this.logingoogle
       .registrarse(email, password)
       .then((res) => {
-        alert("Usuario creado correctamente; ahora inicia sesión")
-        this.openDialog()
-        this.email = ''
-        this.password =''
-        this.mostrarRegistro= false
+        this.openDialog();
+        this.email = '';
+        this.password = '';
+        this.mostrarRegistro = false;
         console.log(res);
       })
       .catch((error) => {
@@ -104,5 +107,12 @@ export class AppComponent {
     } else {
       this.mostrarRegistro = true;
     }
+  }
+  guardarSpam() {
+    const spamConSaltos = this.spam.replace(/<br>/g, '\n');
+    const guardarSpam ={
+      spam:spamConSaltos
+    }
+    this.spamService.agregarSpam(guardarSpam)
   }
 }

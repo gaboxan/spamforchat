@@ -9,10 +9,14 @@ import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import { environments } from 'src/environments/environment';
 import {MatDialogModule} from '@angular/material/dialog'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {MatInputModule} from '@angular/material/input';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 
-// import { MensajeModalComponent } from './mensaje-modal/mensaje-modal.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SpamService } from 'src/services/spam.service';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 
@@ -27,6 +31,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     DialogBoxComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -37,11 +42,15 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatButtonModule
    
 
   ],
-  providers: [loginGoogle],
+  providers: [loginGoogle,SpamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
