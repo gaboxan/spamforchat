@@ -1,172 +1,5 @@
-<div style="display: flex; align-items: center; justify-content: center">
-  <h5
-    style="
-      text-align: center;
-      width: 400px;
-      height: 40px;
-      margin: 30px;
-      background-color: #19d257;
-      border-radius: 5px;
-    "
-    class="btn"
-  >
-    Inicia Sesión
-  </h5>
-</div>
-
-<div style="display: flex; align-items: center; justify-content: center">
-  <h5
-    style="
-      text-align: center;
-      width: 400px;
-      height: 40px;
-      background-color: #5d6460;
-      border-radius: 5px;
-    "
-    class="btn"
-    (click)="mostrarR()"
-  >
-    Registrate
-  </h5>
-</div>
-<section *ngIf="mostrarRegistro" id="register">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 mx-auto">
-        <div class="card">
-          <div
-            class="card-header"
-            style="
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            "
-          >
-            <h4>Register</h4>
-            <button (click)="mostrarR()">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <div class="card-body">
-            <form (submit)="vEmail()">
-              <div class="form-group">
-                <mat-form-field>
-                  <mat-label>Correo</mat-label>
-                  <input
-                    matInput
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="user@correo.cl"
-                    [(ngModel)]="email"
-                    required
-                  />
-                  <mat-error *ngIf="emailValid">{{ emailvMsg }}</mat-error>
-                </mat-form-field>
-
-                <!-- <div
-                  class="alert alert-warning mt-2"
-                  *ngIf="emailValid"
-                  role="alert"
-                >
-                  {{ emailvMsg }}
-                </div> -->
-              </div>
-
-              <div class="form-group">
-                <mat-form-field>
-                  <mat-label>Clave</mat-label>
-                  <input
-                    matInput
-                    type="password"
-                    name="password"
-                    placeholder="*****"
-                    id="password"
-                    [(ngModel)]="password"
-                    required
-                  />
-                  <mat-error *ngIf="passValid">{{ passwordMsg }}</mat-error>
-                  <mat-hint align="end">Más de 5 caracteres</mat-hint>
-                </mat-form-field>
-              </div>
-              <input
-                type="submit"
-                value="login"
-                class="btn btn-primary w-100 mt-4"
-              />
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section *ngIf="mostrarLogin" id="register">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 mx-auto">
-        <div class="card">
-          <div
-            class="card-header"
-            style="
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            "
-          >
-            <h4>Login</h4>
-            <button (click)="mostrarL()">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <div class="card-body">
-            <form (submit)="vEmail()">
-              <div class="form-group">
-                <mat-form-field>
-                  <mat-label>Correo</mat-label>
-                  <input
-                    matInput
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="user@correo.cl"
-                    [(ngModel)]="email"
-                    required
-                  />
-                  <mat-error *ngIf="emailValid">{{ emailvMsg }}</mat-error>
-                </mat-form-field>
-
-              
-              </div>
-
-              <div class="form-group">
-                <mat-form-field>
-                  <mat-label>Clave</mat-label>
-                  <input
-                    matInput
-                    type="password"
-                    name="password"
-                    placeholder="*****"
-                    id="password"
-                    [(ngModel)]="password"
-                    required
-                  />
-                  <mat-error *ngIf="passValid">{{ passwordMsg }}</mat-error>
-                 
-                </mat-form-field>
-              </div>
-              <input
-                type="submit"
-                value="login"
-                class="btn btn-primary w-100 mt-4"
-              />
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<app-login />
+<app-register />
 
 <h1
   style="
@@ -189,11 +22,13 @@
         (input)="spamear()"
       />
       <div class="form-floating" style="margin: 20px auto; width: 200px">
-        <mat-form-field >
+        <mat-form-field>
           <mat-label>Lineas a spamear</mat-label>
-          <mat-select  [(ngModel)]="lineasSpam"
-          (change)="spamear()"
-          name="NumeroSpam">
+          <mat-select
+            [(ngModel)]="lineasSpam"
+            (change)="spamear()"
+            name="NumeroSpam"
+          >
             <mat-option value="2"> 2 </mat-option>
             <mat-option value="3"> 3 </mat-option>
             <mat-option value="4"> 4 </mat-option>
@@ -205,7 +40,6 @@
             <mat-option value="10"> 10 </mat-option>
           </mat-select>
         </mat-form-field>
-   
       </div>
 
       <p
@@ -220,7 +54,6 @@
         Desactivar Mayusculas
       </p>
       <mat-checkbox class="example-margin" [(ngModel)]="Mayus"></mat-checkbox>
-   
     </div>
     <div class="col">
       <h4
