@@ -1,5 +1,27 @@
-<app-login />
-<app-register />
+<div class="row">
+  <div *ngIf="mostrarLLR" class="col">
+    <app-register></app-register>
+  </div>
+  <div *ngIf="mostrarLLR" class="col">
+    <app-login />
+  </div>
+  <div *ngIf="!mostrarLLR" class="col">
+    <button
+      mat-button
+      style="
+        text-align: center;
+        width: 200px;
+        height: 40px;
+        margin: 30px auto;
+        background-color: #24c469;
+        border-radius: 5px;
+      "
+      (click)="logOut()"
+    >
+      Cerrar Sesión
+    </button>
+  </div>
+</div>
 
 <h1
   style="

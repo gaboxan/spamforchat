@@ -27,5 +27,14 @@ login(email:string, password:string){
       
   })
 }
+getAuth(){
+  return this.authService.authState.pipe(
+      map( auth =>auth)
+  )
+}
+logout(){
+  this.authService.signOut()
+  console.log("deslogueado")
+}
   
 }

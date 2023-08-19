@@ -19,7 +19,8 @@ export class SpamService {
         );
       }
 
-      agregarSpam(spam: Spam) {
-        this.usuarioColeccion.add(spam);
-      }
+      agregarSpam(spam: Spam, correoUsuario: string, nombreSpam:string) {
+        return this.db.collection(`users/${correoUsuario}/${nombreSpam}`).doc(nombreSpam).set(spam);
+       
+    }
 }
