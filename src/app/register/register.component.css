@@ -1,0 +1,67 @@
+.registration-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .registration-header {
+    background-color: #5d6460;
+    border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .registration-title {
+    text-align: center;
+    margin: 0;
+    color: white;
+  }
+  
+  .registration-form {
+   
+    display: flex;
+    flex-direction: column;
+    width: 500px; /* Ajusta el ancho según tu diseño */
+    padding-bottom: 15px;
+    padding-right: 5px;
+    padding-top: 5px;
+    background-color: transparent;
+    border-radius: 5px;
+    position: relative;
+   
+  }
+  
+  .horizontal-form {
+    display: flex;
+    flex-direction: column; /* Cambiado a columna para agrupar los campos */
+    align-items: center;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: row; /* Cambiado a fila para alinear horizontalmente los campos */
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    align-items: center; /* Alinear verticalmente los elementos */
+  }
+  
+  .form-group button {
+    margin-top: auto;
+    margin-left: 10px; 
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #555;
+  }
+  

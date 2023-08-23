@@ -1,11 +1,11 @@
-// app.component.ts
 import { Component, ElementRef, Injectable, OnInit, ViewChild } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { loginGoogle } from 'src/services/loginGoogle.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { SpamService } from 'src/services/spam.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Toggle } from 'src/services/toggle.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ import { SpamService } from 'src/services/spam.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit{
-  title = 'sftc';
+  title = 'sfc';
   spamI: string = '';
   spam: string = '';
   lineasSpam: number = 2;
@@ -21,17 +21,20 @@ export class AppComponent implements OnInit{
   spamfC: string = '';
   mostrarCopiar: boolean = false;
   mostrarLLR:boolean = true
- 
+  mostrarIniciarSesion: boolean = true;
+  mostrarRegistrarse: boolean = true;
+  mostrarR:boolean
 
   DesactivarMayus() {}
 
   constructor(
     private clipboard: Clipboard,
     private logingoogle: loginGoogle,
-    private route: Router,
     public dialog: MatDialog,
-    private spamService:SpamService
-  ) {}
+    private spamService:SpamService,
+    private _snackBar: MatSnackBar,
+
+  ) { }
   ngOnInit() {
     this.logingoogle.getAuth().subscribe((auth)=>{
       if(auth){
@@ -42,7 +45,9 @@ export class AppComponent implements OnInit{
         this.mostrarLLR= true
       }
     })
+
   }
+
 
 
   spamear() {
@@ -62,6 +67,7 @@ export class AppComponent implements OnInit{
   copiar() {
     const spamConSaltos = this.spam.replace(/<br>/g, '\n');
     this.clipboard.copy(spamConSaltos);
+    this._snackBar.open("Mensaje copiado", "Ok",{duration:1500});
   }
 
   guardarSpam() {
@@ -81,5 +87,14 @@ export class AppComponent implements OnInit{
   }
   logOut(){
     this.logingoogle.logout()
+    this._snackBar.open("Cerraste sesión exitosamente","Ok",{duration:15000,horizontalPosition:'end',verticalPosition:'top'})
+
   }
+  
+
+  toggleRegistrarse() {
+    
+    this.mostrarIniciarSesion = !this.mostrarIniciarSesion;
+  }
+  
 }

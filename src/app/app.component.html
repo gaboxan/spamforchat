@@ -1,27 +1,64 @@
-<div class="row">
-  <div *ngIf="mostrarLLR" class="col">
-    <app-register></app-register>
-  </div>
-  <div *ngIf="mostrarLLR" class="col">
-    <app-login />
-  </div>
-  <div *ngIf="!mostrarLLR" class="col">
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Spam4Chat</a>
+    <li class="nav-item">
+      <app-register
+        *ngIf="mostrarLLR"
+        (click)="toggleRegistrarse()"
+      ></app-register>
+    </li>
+    <li class="nav-item">
+      <app-login *ngIf="mostrarLLR" />
+    </li>
+    <li class="nav-item">
+      <button
+        *ngIf="!mostrarLLR"
+        mat-button
+        style="
+          text-align: center;
+          width: 150px;
+          height: 40px;
+          background-color: #24c469;
+          border-radius: 5px;
+        "
+        (click)="logOut()"
+      >
+        Cerrar Sesión
+      </button>
+    </li>
     <button
-      mat-button
-      style="
-        text-align: center;
-        width: 200px;
-        height: 40px;
-        margin: 30px auto;
-        background-color: #24c469;
-        border-radius: 5px;
-      "
-      (click)="logOut()"
+      *ngIf="!mostrarLLR"
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasDarkNavbar"
+      aria-controls="offcanvasDarkNavbar"
+      aria-label="Toggle navigation"
     >
-      Cerrar Sesión
+      <span class="navbar-toggler-icon"></span>
     </button>
+    <div
+      class="offcanvas offcanvas-end text-bg-dark"
+      tabindex="-1"
+      id="offcanvasDarkNavbar"
+      aria-labelledby="offcanvasDarkNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Correo</h5>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"
+              >Mis spams</a
+            >
+          </li>
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</nav>
 
 <h1
   style="

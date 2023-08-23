@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Login</h1>
+<div style="display: flex; justify-content: space-between;;" mat-dialog-content>
+  <p>Inicia sesión</p>
+  <button mat-button (click)="onNoClick()"  >
+    X
+  </button>
+</div>
+<div mat-dialog-actions>
+  <form (submit)="vEmail()" class="horizontal-form">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Correo</mat-label>
+        <input
+          matInput
+          type="email"
+          name="email"
+          id="email"
+          placeholder="user@correo.cl"
+          [(ngModel)]="email"
+          required
+        />
+        <mat-error *ngIf="emailValid">{{ emailvMsg }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Clave</mat-label>
+        <input
+          matInput
+          type="password"
+          name="password"
+          placeholder="*****"
+          id="password"
+          [(ngModel)]="password"
+          required
+        />
+        <mat-error *ngIf="passValid">{{ passwordMsg }}</mat-error>
+      </mat-form-field>
+
+      <button mat-button type="submit" class="btn btn-success w-100">
+        Register
+      </button>
+    </div>
+  </form>
+</div>
