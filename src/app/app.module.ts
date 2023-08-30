@@ -21,6 +21,12 @@ import { LoginComponent } from './login/login.component';
 import { LoginBoxComponent } from './login-box/login-box.component';
 import { RegisterBoxComponent } from './register-box/register-box.component';
 import { Toggle } from 'src/services/toggle.service';
+import { SpamsUserComponent } from './spams-user/spams-user.component';
+import { AppRoutingModule } from './app-routing.module';
+import { XdComponent } from './xd/xd.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 
@@ -31,14 +37,14 @@ import { Toggle } from 'src/services/toggle.service';
 @NgModule({
   declarations: [
     AppComponent,
-
-
     DialogBoxComponent,
       RegisterComponent,
       LoginComponent,
       LoginBoxComponent,
       RegisterBoxComponent,
-
+      SpamsUserComponent,
+      XdComponent,
+      
 
 
   ],
@@ -56,7 +62,11 @@ import { Toggle } from 'src/services/toggle.service';
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AppRoutingModule,
+    MatTableModule,
+    MatCardModule
+    
    
 
   ],

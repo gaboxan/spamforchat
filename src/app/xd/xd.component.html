@@ -1,0 +1,80 @@
+<h1
+  style="
+    text-align: center;
+    width: 400px;
+    margin: 100px auto;
+    background-color: #1976d2;
+    border-radius: 5px;
+  "
+>
+  Escribe tu spam
+</h1>
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <input
+        style="height: 150px; width: 400px"
+        type="text"
+        [(ngModel)]="spamI"
+        (input)="spamear()"
+      />
+      <div class="form-floating" style="margin: 20px auto; width: 200px">
+        <mat-form-field>
+          <mat-label>Lineas a spamear</mat-label>
+          <mat-select
+            [(ngModel)]="lineasSpam"
+            (change)="spamear()"
+            name="NumeroSpam"
+          >
+            <mat-option value="2"> 2 </mat-option>
+            <mat-option value="3"> 3 </mat-option>
+            <mat-option value="4"> 4 </mat-option>
+            <mat-option value="5"> 5 </mat-option>
+            <mat-option value="6"> 6 </mat-option>
+            <mat-option value="7"> 7 </mat-option>
+            <mat-option value="8"> 8 </mat-option>
+            <mat-option value="9"> 9 </mat-option>
+            <mat-option value="10"> 10 </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <p
+        style="
+          background-color: #1976d2;
+          width: 200px;
+          margin: 20px auto;
+          border-radius: 4px;
+          color: antiquewhite;
+        "
+      >
+        Desactivar Mayusculas
+      </p>
+      <mat-checkbox class="bg-light" style="border-radius: 100%; margin-bottom: 5px;" [(ngModel)]="Mayus"></mat-checkbox>
+    </div>
+    <div class="col">
+      <h4
+        style="background-color: #1976d2; border-radius: 4px"
+        ([Ngmodel])="(spamfC)"
+        [innerHTML]="spam"
+      ></h4>
+      <button *ngIf="mostrarCopiar" (click)="copiar()" class="btn btn-light">
+        <i class="fa-regular fa-copy"></i> Copiar
+      </button>
+      <mat-form-field *ngIf="mostrarCopiar && mostrarBtns" style="margin-left: 5px; margin-top: 5px;">
+        <mat-label>Nombre del spam</mat-label>
+        <textarea [(ngModel)]="spamName" style="height: 15px; " matInput ></textarea>
+       
+      </mat-form-field>
+      <button
+        *ngIf="mostrarCopiar && mostrarBtns"
+        mat-button
+        style="background-color: #1976d2; margin-left: 5px;"
+        (click)="guardarSpam()"
+      >
+        Guardar Spam
+      </button>
+    </div>
+  </div>
+</div>
+
