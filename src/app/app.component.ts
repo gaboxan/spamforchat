@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { loginGoogle } from 'src/services/loginGoogle.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {  Router } from '@angular/router';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class AppComponent implements OnInit {
   constructor(
     private logingoogle: loginGoogle,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router:Router
   ) {}
   ngOnInit() {
     this.logingoogle.getAuth().subscribe((auth) => {
@@ -47,10 +49,12 @@ export class AppComponent implements OnInit {
 
   logOut() {
     this.logingoogle.logout();
+    this.router.navigate(['/'])
     this._snackBar.open('Cerraste sesión exitosamente', 'Ok', {
       duration: 15000,
       horizontalPosition: 'end',
       verticalPosition: 'top',
     });
+    
   }
 }

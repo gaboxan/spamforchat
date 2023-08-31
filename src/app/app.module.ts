@@ -26,6 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { XdComponent } from './xd/xd.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -44,6 +46,7 @@ import {MatCardModule} from '@angular/material/card';
       RegisterBoxComponent,
       SpamsUserComponent,
       XdComponent,
+      NotFoundComponent,
       
 
 
@@ -70,7 +73,7 @@ import {MatCardModule} from '@angular/material/card';
    
 
   ],
-  providers: [loginGoogle,SpamService,Toggle],
+  providers: [loginGoogle,SpamService,Toggle,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
